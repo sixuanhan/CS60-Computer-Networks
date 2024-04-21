@@ -1,4 +1,7 @@
 ## Exercise 1
+
+**Collaboration Statement**: I discussed with Hugo Fang and Yuanhao Chen.
+
 ### a
 The IP address of packetbender.com is 71.19.146.5.
 Using Autonomous System Lookup, The Autonomous System Number is 47066, whose name is PRGMR.
@@ -54,13 +57,56 @@ Gives Type 11 Code 0.
 ```
 Gives Type 0 Code 0.
 
+```bash
+(base) ➜  ~ traceroute dartmouth.edu
+```
+Gives Type 3 Code 3.
+
+```bash
+(base) ➜  ~ sudo hping3 -c 1 -1 -C 13 192.168.64.3
+```
+Gives Type 14 Code 0.
+
+```bash
+ubuntu@inventive-curassow:~$ sudo hping3 -c 1 -1 -C 8 -K 1 172.26.83.109
+```
+Gives Type 0 Code 1.
 
 ## Exercise 3
+```bash
+[sixuan@thepond ~]$ netstat -lantu
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 0.0.0.0:106             0.0.0.0:*               LISTEN
+tcp        0      0 0.0.0.0:603             0.0.0.0:*               LISTEN
+tcp        0    224 129.170.212.8:106       10.135.21.96:55863      ESTABLISHED
+tcp        0      0 129.170.212.8:106       10.135.171.197:50479    ESTABLISHED
+tcp        0      0 129.170.212.8:106       10.134.88.184:52910     ESTABLISHED
+tcp        0      0 129.170.212.8:106       10.134.85.11:64485      ESTABLISHED
+tcp        0      0 129.170.212.8:60492     129.170.212.8:603       CLOSE_WAIT
+tcp        0      0 129.170.212.8:106       10.135.171.197:50344    ESTABLISHED
+tcp6       0      0 :::106                  :::*                    LISTEN
+udp        0      0 0.0.0.0:603             0.0.0.0:*
+```
+The bot listens at port 603.
+
+```bash
+[sixuan@thepond ~]$ nc localhost 603
+12
+Error: Message is not 10 bytes
+000000000
+Error: Message does not start with magic byte
+```
+
+Using `find_message.py`, looping over the first byte, the second byte, and the third byte, we get that the message should start with 9, 0, 255, and then include the netID.
+
 ```python
 message = bytes([9, 0, 255, ord('f'), ord('0'), ord('0'), ord('4'), ord('n'), ord('7'), ord('k')])
 ```
 
 ### UDP
+Using `find_port.py`, we loop over all ports from 2000 to 2999 and get:
+
 Found valid source port: 2699
 
 Response: Hello sixuan, your token is: 42f4d9e0
