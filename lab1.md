@@ -4,7 +4,10 @@
 
 ### a
 The IP address of packetbender.com is 71.19.146.5.
+
 Using Autonomous System Lookup, The Autonomous System Number is 47066, whose name is PRGMR.
+
+Connectivity: upstream Hurricane Electric LLC, Tier 1 AS: AS701 Verizon, AS3356 Lumen, etc.
 
 ### b
 ```bash
@@ -48,6 +51,13 @@ TOKEN=G4mJxm0d
 
 ## Exercise 2
 ```bash
+(base) ➜  ~ sudo hping3 -c 1 -1 -C 13 192.168.64.3
+```
+Gives Type 14 Code 0.
+
+The above is captured in [capture1.pcap](/capture1.pcap).
+
+```bash
 (base) ➜  ~ traceroute -m 2 8.8.8.8
 ```
 Gives Type 11 Code 0.
@@ -63,14 +73,12 @@ Gives Type 0 Code 0.
 Gives Type 3 Code 3.
 
 ```bash
-(base) ➜  ~ sudo hping3 -c 1 -1 -C 13 192.168.64.3
-```
-Gives Type 14 Code 0.
-
-```bash
 ubuntu@inventive-curassow:~$ sudo hping3 -c 1 -1 -C 8 -K 1 172.26.83.109
 ```
 Gives Type 0 Code 1.
+
+The above are captured in [capture2.pcap](/capture2.pcap).
+
 
 ## Exercise 3
 ```bash
